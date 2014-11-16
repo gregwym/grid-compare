@@ -1,0 +1,36 @@
+<html>
+<head>
+  <title>Grid Comparison</title>
+  <link rel="stylesheet" type="text/css" href="bower_components/angular-ui-grid/ui-grid.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/ng-grid/ng-grid.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.js"></script>
+  <script src="http://ui-grid.info/release/ui-grid-unstable.min.js"></script>
+  <script src="http://angular-ui.github.io/ng-grid/lib/ng-grid.debug.js"></script>
+  <script src="main.js"></script>
+  <script src="10000_complex.js"></script>
+  <style type="text/css">
+    .grid {
+      height: 90vh;
+    }
+  </style>
+</head>
+<body ng-app="gridComp">
+  <div class="container" ng-controller="mainCtrl" ng-switch="flags.type">
+    <div class="row">
+      <button ng-click="flags.type = 'origin'">Origin</button>
+      <button ng-click="flags.type = 'ng-grid'">ng-grid</button>
+      <button ng-click="flags.type = 'ui-grid'">ui-grid</button>
+      <button ng-click="flags.type = ''">Nothing</button>
+    </div>
+    <div class="row" ng-switch-when="origin">
+      <pre>{{ data | json }}</pre>
+    </div>
+    <div class="row grid" ng-switch-when="ng-grid" ng-grid="gridOptions">
+    </div>
+    <div class="row grid" ng-switch-when="ui-grid">
+      <div ui-grid="gridOptions"></div>
+    </div>
+  </div>
+</body>
+</html>
